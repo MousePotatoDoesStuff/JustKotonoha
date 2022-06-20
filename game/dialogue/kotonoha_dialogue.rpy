@@ -15,16 +15,23 @@ label on_first_start:
     window hide
     scene black with dissolve_scene_full
     window show
-    "Here I am."
-    "To be honest, I'm somewhat nervous."
-    "One week ago today, I made a big commitment."
-    "I agreed to help out a classmate of mine. Kotonoha."
-    "Truth be told, I've never really known Kotonoha that well."
-    "She's a clubmate of mine, but we hardly have much in common."
-    "At least, nothing that I know of. She never really told me what she liked to do."
-    "I take a deep breath, and look at my watch."
-    "She's late."
-    "One day, Kotonoha approached me."
+    # "Here I am."
+    # "To be honest, I'm somewhat nervous."
+    # "One week ago today, I made a big commitment."
+    # "I agreed to help out a classmate of mine. Kotonoha."
+    # "Truth be told, I've never really known Kotonoha that well."
+    # "She's a clubmate of mine, but we hardly have much in common."
+    # "At least, nothing that I know of. She never really told me what she liked to do."
+    # "I take a deep breath, and look at my watch."
+    # "She's late."
+    # "One day, Kotonoha approached me."
+    "...and here you are."
+    "A week ago, you made a big commitment."
+    "You agreed to help out a classmate of yours."
+    "Truth be told, you've never really known her that well..."
+    "She's a clubmate of yours, but you hardly have much in common."
+    "At least, nothing that you know of. She never really told you what she liked to do."
+    "One day, Kotonoha approached you."
     stop music fadeout 1.0
     play music t9 fadein 2.0
     scene bg corridor with open_eyes
