@@ -9,10 +9,11 @@
 init -100 python: # Mod team is listed here.
     LX={('Dirtthief',0),
     ('MousePotatoDoesStuff',1),
-    ('Magma',100),
+    ('LilBigJP',2),
     ('SpaceyScarf',3),
     ('Blakey',4),
     ('Southernhylian',5),
+    ('Talia',6)
     }
     if not renpy.android:
         for archive in ['audio','images','fonts']:

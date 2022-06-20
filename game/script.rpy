@@ -8,6 +8,9 @@ init -10 python:
             return persistent.data[k]
         else:
             return d
+    def assign_data(k,d):
+        persistent.data[k]=d
+        return
 
 
 
@@ -52,7 +55,11 @@ label start:
     $ allow_skipping = True
     $ config.allow_skipping = True
     scene black
-    call on_first_start from _call_on_first_start
+    if retrieve_data('started', False):
+        call on_restart
+    else:
+        call on_first_start
+    call before_main_menu
 
 # This label is where the game 'ends' during Act 1.
 label endgame(pause_length=4.0):

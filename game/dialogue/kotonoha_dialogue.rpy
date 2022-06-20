@@ -68,6 +68,11 @@ label on_first_start:
     ko "Seems like you sort of... Zoned out a little bit there."
     "Kotonoha giggles softly."
     ko happ "Thanks for showing up."
+    $ assign_data('started',True)
+    return
+
+label on_restart:
+    ko "Welcome back,"
     return
 
 # Random chatter
