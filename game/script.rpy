@@ -60,6 +60,10 @@ label start:
     else:
         call on_first_start
     call before_main_menu
+label koto_mainloop:
+    $ renpy.pause(10)
+    call random_choice
+    jump koto_mainloop
 
 # This label is where the game 'ends' during Act 1.
 label endgame(pause_length=4.0):

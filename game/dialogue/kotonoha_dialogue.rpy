@@ -1,12 +1,15 @@
 init -9 python:
+    import random
     koto_random_conversation+=[
         'random_chatter_1',
-        'random_chatter_2',
-        'random_question_1'
+        'random_chatter_2'
     ]
+    if persistent.data is None:
+        persistent.data=dict()
     if retrieve_data('religious',False):
         koto_random_conversation += ['religious']
-
+    elif not retrieve_data('religious',True):
+        koto_random_conversation += ['random_question_1']
 
 # Starting up the game for the first time
 label on_first_start:
@@ -69,11 +72,73 @@ label on_first_start:
     "Kotonoha giggles softly."
     ko happ "Thanks for showing up."
     $ assign_data('started',True)
-    return
+    jump how_feeling
 
 label on_restart:
-    ko "Welcome back,"
+    play music wind fadein 1.0 volume 2.0
+    scene bg park
+    show black zorder 10
+    show kotonoha toward casual happ at tdesk
+    hide black with open_eyes
+    ko "Welcome back,[player]!"
+
+label how_feeling:
+    show kotonoha toward casual happ at tdesk
+    menu:
+        ko "How are you feeling?"
+        "Great!":
+            ko "I am happy to hear that, [player]!"
+            menu:
+                ko "Is there something in particular that made your day?"
+                "Nope, just feeling great for no reason!":
+                    ko "That's the spirit, [player]!"
+                "(Click here after saying the reason)":
+                    ko "That sounds great, [player]!"
+            "{i}Kotonoha hugs you.{/i}"
+        "Good.":
+            "If you're feeling good, it makes me feel good too!"
+            "{i}Kotonoha hugs you.{/i}"
+        "Okay.":
+            "..."
+            menu:
+                "{i}Kotonoha hugs you.{/i}"
+                "...":
+                    pass
+                "...why the hug?":
+                    "I can tell you're not really okay. Nobody who says they're \'okay\' actually means it."
+                    "Is there something in particular that ruined your day?"
+                    menu:
+                        "Nope, just feeling awful for no reason...":
+                            ko "It's okay, [player]. Some days are just like that."
+                        "I'm really feeling okay, Kotonoha.":
+                            ko "It's okay, [player]. I won't push you to tell."
+                        "(Click here after saying the reason)":
+                            "...oh. I'm sorry to hear that, [player]."
+        "Not so good.":
+            "It's okay. I'm here for you, [player]."
+            "{i}Kotonoha gives you a comforting hug.{/i}"
+        "I feel awful.":
+            "Oh..."
+            "Is there something in particular that ruined your day?"
+            menu:
+                "Nope, just feeling awful for no reason...":
+                    ko "It's okay, [player]. Some days are just like that."
+                "I would rather not talk about it.":
+                    ko "It's okay, [player]. I won't push you to tell."
+                "(Click here after saying the reason)":
+                    "...oh. I'm sorry to hear that, [player]."
+            "{i}Kotonoha gives you a comforting hug.{/i}"
     return
+
+label random_choice:
+    python:
+        "[str(len(koto_random_conversation))]"
+        chosen=random.choice(koto_random_conversation)
+    call expression chosen
+    python:
+        koto_random_conversation.remove(chosen)
+    return
+
 
 # Random chatter
 label random_chatter_1:
@@ -122,6 +187,7 @@ label random_question_1:
     ko "But when I was grounded, I was thinking..."
     ko "If that car {i}had{/i} hit me..."
     ko "What would've happened?"
+    ko "..."
     hide window
     pause 2.0
     show window
@@ -136,6 +202,7 @@ label random_question_1:
     ko "But I didn't really care. I was just a kid."
     ko "That changed, though. I cared a lot more after that, y'know?"
     if persistent.data['religious']:
+        $ koto_random_conversation += ['religious']
         ko "I didn't know that you were religious, [player], it's nice to learn things about you."
 
 # IF THE PLAYER HAS CHOSEN "I AM RELIGIOUS" OPTION SOMETIME BEFORE
