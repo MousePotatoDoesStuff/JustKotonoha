@@ -8,7 +8,7 @@ init -9 python:
         persistent.data=dict()
     if retrieve_data('religious',False):
         koto_random_conversation += ['religious']
-    elif not retrieve_data('religious',True):
+    elif retrieve_data('religious',None) is None:
         koto_random_conversation += ['random_question_1']
 
 # Starting up the game for the first time
@@ -131,8 +131,11 @@ label how_feeling:
     return
 
 label random_choice:
+    $ dump = str(koto_random_conversation)
+    # "[dump]"
+    if len(koto_random_conversation)==0:
+        jump out_of_topics_1
     python:
-        "[str(len(koto_random_conversation))]"
         chosen=random.choice(koto_random_conversation)
     call expression chosen
     python:
@@ -168,7 +171,7 @@ label random_chatter_2:
     ko "But USB?"
     ko "It's completely random."
     ko "There is no benefit in life knowing what USB stands for."
-    ko "Personally,"
+    # ko "Personally,"
     return
 
 label random_question_1:
@@ -204,6 +207,7 @@ label random_question_1:
     if persistent.data['religious']:
         $ koto_random_conversation += ['religious']
         ko "I didn't know that you were religious, [player], it's nice to learn things about you."
+    return
 
 # IF THE PLAYER HAS CHOSEN "I AM RELIGIOUS" OPTION SOMETIME BEFORE
 label religious:
@@ -224,3 +228,13 @@ label religious:
     ko "I understood what Monika said that day."
     ko "It was like something just snapped in my brain."
     return
+
+label out_of_topics_1:
+    ko "I'm afraid we're all out of topics for now, [player]."
+    ko "You see, this is more of a tech demo than a fully finished mod."
+    ko "But there is no reason we can't stay here and just enjoy each other's company."
+    $ renpy.pause(9001)
+    ko "I've been on for a while. You must really like my company...{w=10}{nw}"
+    $ renpy.pause(9001)
+    ko "You can't keep the mod open forever, you know...{w=10}{nw}"
+    $ renpy.pause(9001)
