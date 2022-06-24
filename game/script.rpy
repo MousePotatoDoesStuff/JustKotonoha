@@ -4,11 +4,16 @@ default persistent.data=dict()
 init -10 python:
     koto_random_conversation=list()
     def retrieve_data(k,d):
-        if k in persistent.data:
-            return persistent.data[k]
-        else:
+        if persistent.data is None:
+            persistent.data=dict()
+        if k not in persistent.data:
             return d
-    def assign_data(k,d):
+        return persistent.data[k]
+    def assign_data(k,d,onlyDefault=False):
+        if persistent.data is None:
+            persistent.data=dict()
+        if onlyDefault and k in persistent.data:
+            return
         persistent.data[k]=d
         return
 
@@ -16,6 +21,16 @@ init -10 python:
 
 
 label start:
+    python:
+        traits=[ # Traits are on a scale from 0 to 100.
+            ('extr':0),     # Extroversion (default is 0 - introvertrd)
+            ('dere':0),     # Similar to an affection level
+            ('tsun':0),     # How much of a Natsuki is this character
+            ('yand':0),     # Guess what this does...
+            ('meta':50)     # Epiphany level
+        ]
+        for (k,d) in traits:
+            assign_data('trait_'+k,d,True)
 
     # This label configures the anticheat number for the game after Act 1.
     # It is recommended to leave this as-is and use the following in your script:
