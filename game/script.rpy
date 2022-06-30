@@ -23,7 +23,8 @@ init -10 python:
 label start:
     python:
         traits=[ # Traits are on a scale from 0 to 100.
-            ('extr':0),     # Extroversion (default is 0 - introvertrd)
+            ('ener':100),   # Energy level
+            ('extr':0),     # Extroversion (default is 0 - introverted)
             ('dere':0),     # Similar to an affection level
             ('tsun':0),     # How much of a Natsuki is this character
             ('yand':0),     # Guess what this does...
