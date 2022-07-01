@@ -6,10 +6,10 @@ init -9 python:
     ]
     if persistent.data is None:
         persistent.data=dict()
-    if retrieve_data('religious',False):
-        koto_random_conversation += ['religious']
-    elif retrieve_data('religious',None) is None:
-        koto_random_conversation += ['random_question_1']
+    if retrieve_data('pet_preference',None) is 'cat':
+        koto_random_conversation += ['cat']
+    elif retrieve_data('pet_preference',None) is None:
+        koto_random_conversation += ['pet_preference']
 
 # Starting up the game for the first time
 label on_first_start:
@@ -191,26 +191,13 @@ label random_question_1:
     ko "If that car {i}had{/i} hit me..."
     ko "What would've happened?"
     ko "..."
-    hide window
-    pause 2.0
-    show window
-    menu:
-        ko "[player], are you religious?"
-        "Yes":
-            $ persistent.data['religious'] = True
-        "No":
-            $ persistent.data['religious'] = False
     ko "I wasn't really religious before that happened."
     ko "I mean, I went to meetings and all that,"
     ko "But I didn't really care. I was just a kid."
     ko "That changed, though. I cared a lot more after that, y'know?"
-    if persistent.data['religious']:
-        $ koto_random_conversation += ['religious']
-        ko "I didn't know that you were religious, [player], it's nice to learn things about you."
     return
 
-# IF THE PLAYER HAS CHOSEN "I AM RELIGIOUS" OPTION SOMETIME BEFORE
-label religious:
+label epiphany:
     ko "Monika once said to me that she had what's called an epiphany."
     ko "At the time I didn’t understand what Monika said and it stayed that way until Friday 26th of November 2021."
     ko "That day I will always remember clearly."
