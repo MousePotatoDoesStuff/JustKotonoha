@@ -403,8 +403,11 @@ screen quick_menu():
             textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Load") action ShowMenu('load')
+            # textbutton _("Save") action ShowMenu('save')
+            # textbutton _("Load") action ShowMenu('load')
+            if main_screen:
+                textbutton _("Ask") action ShowMenu('ask_koto')
+                textbutton _("Tell") action ShowMenu('tell_koto')
             #textbutton _("Q.Save") action QuickSave()
             #textbutton _("Q.Load") action QuickLoad()
             textbutton _("Settings") action ShowMenu('preferences')
@@ -416,6 +419,7 @@ screen quick_menu():
 #    config.overlay_screens.append("quick_menu")
 
 default quick_menu = True
+default main_screen = True
 
 #style quick_button is default
 #style quick_button_text is button_text
@@ -466,6 +470,11 @@ screen navigation():
                     textbutton _("New Game") action If(persistent.playername, true=Start(), false=Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName)))
 
             else:
+                if main_screen:
+                    textbutton _("Ask...") action [ShowMenu("ask_koto"), SensitiveIf(renpy.get_screen("ask_koto") == None)]
+                    textbutton _("Say...") action [ShowMenu("tell_koto"), SensitiveIf(renpy.get_screen("tell_koto") == None)]
+                else:
+                    textbutton _("End current")
 
                 textbutton _("History") action [ShowMenu("history"), SensitiveIf(renpy.get_screen("history") == None)]
 
@@ -474,6 +483,7 @@ screen navigation():
             textbutton _("Load Game") action [ShowMenu("load"), SensitiveIf(renpy.get_screen("load") == None)]
 
             textbutton _("Extras") action [ShowMenu("extras"), SensitiveIf(renpy.get_screen("extras") == None)]
+
 
             if _in_replay:
 

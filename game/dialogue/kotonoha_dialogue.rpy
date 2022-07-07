@@ -10,6 +10,8 @@ init -9 python:
         koto_random_conversation += ['cat']
     elif retrieve_data('pet_preference',None) is None:
         koto_random_conversation += ['pet_preference']
+    if retrieve_data('epiphany',None) is None:
+        koto_random_conversation += ['epiphany']
 
 # Starting up the game for the first time
 label on_first_start:

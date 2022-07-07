@@ -22,13 +22,14 @@ init -10 python:
 
 label start:
     python:
-        traits=[ # Traits are on a scale from 0 to 100.
-            ('ener':100),   # Energy level
-            ('extr':0),     # Extroversion (default is 0 - introverted)
-            ('dere':0),     # Similar to an affection level
-            ('tsun':0),     # How much of a Natsuki is this character
-            ('yand':0),     # Guess what this does...
-            ('meta':50)     # Epiphany level
+        # Traits are on a scale from 0 to 100.
+        traits=[
+            ['ener',100],   # Energy level
+            ['extr',0],     # Extroversion (default is 0 - introverted)
+            ['dere',0],     # Similar to an affection level
+            ['tsun',0],     # How much of a Natsuki is this character
+            ['yand',0],     # Guess what this does...
+            ['meta',50]     # Epiphany level
         ]
         for (k,d) in traits:
             assign_data('trait_'+k,d,True)
