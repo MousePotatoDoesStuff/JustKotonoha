@@ -1,3 +1,33 @@
+# This file addition is a message. Pay attention to it.
+
+Sending this message was important to me.
+
+I considered myself to be a powerful mod coder.
+
+## This repository is not a place of honor.
+No highly esteemed deed is comemorated here.
+Nothing valued that cannot be found on my other repositories can be found here.
+What is here was drama-inducing and repulsive to me. This message is a warning about danger.
+
+## This repository is left public as a warning.
+The position of mod leadership is a position of responsibility, and should not be taken lightly.
+
+While I created this code, I do not own the project it is associated with. Its true owner and official leader, whom I shall not name here, is the source of the drama that brought ruin to it. He was far too immature and lacking in skill to lead a project of this magnitude.
+
+## The danger of drama may still be present, in your time, as it was in the time I wrote this.
+The danger is only unleashed if you bring substantial attention to this matter.
+You may study the code if you wish, but it is best left shunned and forgotten.
+
+If you wish this repository removed from public view, and you have the authority to do so, you may request it at your convenience.
+
+The message ends here, and the standard mod template message follows.
+
+.
+
+.
+
+.
+
 # Welcome to the **New** Modification Club!
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K22K8SU)
